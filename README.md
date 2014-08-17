@@ -5,7 +5,7 @@ svgfallback
 
 There isn't much to say about this script, the name says it all. Simply add the script on your page and make sure that all your SVG images have a fallback version and voilà. Unfortunately the downside is that you need to manually create the fallback version for all your SVG. Having said this, it's a small cost to support those browsers who aren't capable of reading SVG images.
 
-_This plugin is stand alone and does not required any external library._
+_This script is stand alone and does not required any external library._
 
 ### Size
 
