@@ -21,14 +21,12 @@ Example
 
 1) Add the script on your page
 
- <script src="js/svgfallback.js"></script>
+	<script src="js/svgfallback.js"></script>
 
 2) Make sure the fallback extension is the one you want (last line of the script)
 
- window.addEventListener('load', function(){SVGfallback('png')}, false);
+	window.addEventListener('load', function(){SVGfallback('png')}, false);
 
-3) You're done - all you need to make sure is that each image, as the fallback version in the same path
-
- For example, if you have /images/test.svg (using the default .png extension), you need to have /images/test.png available
+3) You're done - all you need to make sure is that each image, as the fallback version in the same path. For example, if you have /images/test.svg (using the default .png extension), you need to have /images/test.png available.
 
 For best results, make sure the fallback image size is the same as the one selected for the .svg
