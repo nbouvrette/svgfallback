@@ -35,7 +35,7 @@ Example
 
 2) Make sure the fallback extension is the one you want (last line of the script):
 
-	window.addEventListener('load', SVGfallback('png'));
+	window.addEventListener('load', function(){SVGfallback('png')});
 
 3) You're done - all you need to make sure is that each image, has the fallback version in the same path. For example, if you have /images/test.svg (using the default .png extension), you need to have /images/test.png available.
 
