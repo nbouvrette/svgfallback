@@ -7,7 +7,7 @@ There isn't much to say about this script, the name says it all. Simply add the 
 
 _This script is stand alone and does not required any external library._
 
-Since version 1.1 (including the minified version), `window.addEventListener` is no longer Polyfilled by default. It is suggested to use a more complete Polyfill such as [eventListenerPolyfill](https://github.com/nbouvrette/eventListenerPolyfill) for better overall supportability. Otherwise it is possible to use the minified version (`svgfallbackWithAttachEvent.min.js`) including IE6-IE8 support without using an event listerner Polyfill.
+Since version 1.1 (including the minified version), `window.addEventListener` is no longer Polyfilled by default. It is suggested to use a more complete Polyfill such as [eventListenerPolyfill](https://github.com/nbouvrette/eventListenerPolyfill) for better overall supportability. Otherwise it is possible to use the minified version ([svgfallbackWithAttachEvent.min.js](https://github.com/nbouvrette/svgfallback/blob/master/svgfallbackWithAttachEvent.min.js)) including IE6-IE8 support without using an event listerner Polyfill.
 
 ### Size
 
