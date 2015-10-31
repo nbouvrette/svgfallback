@@ -7,13 +7,11 @@ There isn't much to say about this script, the name says it all. Simply add the 
 
 _This script is stand alone and does not required any external library._
 
-Since version 1.1 (including the minified version), `window.addEventListener` is no longer Polyfilled by default. It is suggested to use a more complete Polyfill such as [eventListenerPolyfill](https://github.com/nbouvrette/eventListenerPolyfill) for better overall supportability. Otherwise it is possible to use the minified version ([svgfallbackWithAttachEvent.min.js](https://github.com/nbouvrette/svgfallback/blob/master/svgfallbackWithAttachEvent.min.js)) including IE6-IE8 support without using an event listerner Polyfill.
-
 ### Size
 
-- Full version: 2.5k 
-- Minified: 0.65k
-- Minified & Compressed: 0.53k
+- Full version: 2.64k 
+- Minified: 0.76k
+- Minified & Compressed: 0.57k
 
 ### Supports
  - Browsers: IE6 and up, Android Browser 2 and up, any other browsers (which might bypass the script)
@@ -35,7 +33,7 @@ Example
 
 2) Make sure the fallback extension is the one you want (last line of the script):
 
-	window.addEventListener('load', function(){SVGfallback('png')});
+	executeAfterPageLoad(function(){SVGfallback('png')});
 
 3) You're done - all you need to make sure is that each image, has the fallback version in the same path. For example, if you have /images/test.svg (using the default .png extension), you need to have /images/test.png available.
 
