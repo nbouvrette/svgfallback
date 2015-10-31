@@ -55,8 +55,8 @@ function SVGfallback(fallBackExtension) {
 if ((!window.addEventListener || !window.removeEventListener) && window.attachEvent && window.detachEvent) {
     window.attachEvent('onload', function(){SVGfallback('png')});
 } else {
-    window.addEventListener('load', SVGfallback('png'));
+    window.addEventListener('load', function(){SVGfallback('png')});
 }
 
  */
-window.addEventListener('load', SVGfallback('png'));
+window.addEventListener('load', function(){SVGfallback('png')});
