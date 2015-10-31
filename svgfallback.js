@@ -13,7 +13,7 @@
  *
  * Limitations are per design to keep the script small. Considering most devices support SVG nowadays
  * this is just a safe, lean and simple fallback for legacy browsers.
-
+ * 
  * Usage:
  *
  * Simply load this script in your HTML code and make sure that the fallback extension is the one
@@ -43,20 +43,22 @@ function SVGfallback(fallBackExtension) {
 }
 
 /**
- * Launch the fallback script after the page is loaded - default fallback extension is set to 'png'. Usually browsers
- * that do not support SVG (IE8 and lower) also do not support `addEventListener`. For Better overall supportability,
- * it is recommended to use an event listener Polyfill such as this one :
+ * Launch the fallback script after the page is loaded - default fallback extension is set to 'png'. The code below will
+ * make sure that this Polyfill is loaded after the page is loaded.
  *
- * https://github.com/nbouvrette/eventListenerPolyfill
- *
- * If you really insist in not using a more complete event listener Polyfill, you can uncomment the lines below and get
- * rid of the last line of this script:
-
-if ((!window.addEventListener || !window.removeEventListener) && window.attachEvent && window.detachEvent) {
-    window.attachEvent('onload', function(){SVGfallback('png')});
-} else {
-    window.addEventListener('load', function(){SVGfallback('png')});
-}
-
+ * @param {function} newFunction - The HTML input element to polyfill.
  */
-window.addEventListener('load', function(){SVGfallback('png')});
+function executeAfterPageLoad(newFunction) {
+    var existingFunctions = window.onload;
+    if (typeof existingFunctions != 'function') {
+        window.onload = function(){newFunction()};
+    } else {
+        window.onload = function() {
+            if (existingFunctions) {
+                existingFunctions();
+            }
+            newFunction();
+        }
+    }
+}
+executeAfterPageLoad(function(){SVGfallback('png')});
