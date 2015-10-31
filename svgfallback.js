@@ -46,7 +46,7 @@ function SVGfallback(fallBackExtension) {
  * Launch the fallback script after the page is loaded - default fallback extension is set to 'png'. The code below will
  * make sure that this Polyfill is loaded after the page is loaded.
  *
- * @param {function} newFunction - The HTML input element to polyfill.
+ * @param {function} newFunction - The function to run after the page is loaded.
  */
 function executeAfterPageLoad(newFunction) {
     var existingFunctions = window.onload;
