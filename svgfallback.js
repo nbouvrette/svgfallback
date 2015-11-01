@@ -6,7 +6,7 @@
  *
  * Supports:
  *
- *  - Browsers: IE6 and up, Android Browser 2 and up, any other browsers (which might bypass the script)
+ *  - Browsers: IE6+, Android Browser 2+ and any other browsers (which will bypass the script when unnecessary).
  *  - HTML: Image 'src' only
  *  - CSS: background-image only
  *  - Scope: 1 fallback type per HTML document
