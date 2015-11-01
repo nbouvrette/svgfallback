@@ -13,7 +13,7 @@
  *
  * Limitations are per design to keep the script small. Considering most devices support SVG nowadays
  * this is just a safe, lean and simple fallback for legacy browsers.
- * 
+ *
  * Usage:
  *
  * Simply load this script in your HTML code and make sure that the fallback extension is the one
@@ -50,15 +50,12 @@ function SVGfallback(fallBackExtension) {
  */
 function executeAfterPageLoad(newFunction) {
     var existingFunctions = window.onload;
-    if (typeof existingFunctions != 'function') {
-        window.onload = function(){newFunction()};
-    } else {
-        window.onload = function() {
-            if (existingFunctions) {
-                existingFunctions();
-            }
-            newFunction();
+    window.onload = null;
+    window.onload = function() {
+        if (existingFunctions) {
+            existingFunctions();
         }
+        newFunction();
     }
 }
 executeAfterPageLoad(function(){SVGfallback('png')});
