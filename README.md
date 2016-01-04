@@ -9,9 +9,9 @@ _This script is stand alone and does not required any external library._
 
 ### Size
 
-- Full version: 2.53k 
-- Minified: 0.74k
-- Minified & Compressed: 0.56k
+- Full version: 6.39kb (with all comments)
+- Minified: 1.63kb
+- Minified & Compressed: 0.68kb
 
 ### Supports
  - Browsers: IE6+, Android Browser 2+ and any other browsers (which will bypass the script when unnecessary).
@@ -27,13 +27,13 @@ Simply load this script in your HTML code and make sure that the fallback extens
 
 Example
 
-1) Add the script on your page:
+1) Make sure the fallback extension is the one you want by checking the `fallbackExtension` variable (it can also be overwritten if need be):
 
-	<script src="svgfallback.js"></script>
+	fallbackExtension: 'png';
 
-2) Make sure the fallback extension is the one you want (last line of the script):
+2) Add the script on your page:
 
-	executeAfterPageLoad(function(){SVGfallback('png')});
+	<script src="svgFallback.js"></script>
 
 3) You're done - all you need to make sure is that each image, has the fallback version in the same path. For example, if you have /images/test.svg (using the default .png extension), you need to have /images/test.png available.
 
