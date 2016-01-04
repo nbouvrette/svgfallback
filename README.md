@@ -14,7 +14,7 @@ _This script is stand alone and does not required any external library._
 - Minified & Compressed: 0.68kb
 
 ### Supports
- - Browsers: IE6+, Android Browser 2+ and any other browsers (which will bypass the script when unnecessary).
+ - Browsers: IE6+, IE Edge (in IE8 emulation), Android Browser 2+ and any other browsers (which will bypass the script when unnecessary).
  - HTML: Image 'src' only
  - CSS: background-image only
  - Scope: 1 fallback type per HTML document
