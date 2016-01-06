@@ -6,20 +6,21 @@
  *
  * Supports:
  *
- *  - Browsers: IE6+, IE Edge (in IE8 emulation), Android Browser 2+ and any other browsers (which will bypass the script when unnecessary).
+ *  - Browsers: IE6+, IE Edge (in IE8 emulation), Android Browser 2+ and any other browsers (which will bypass the
+ *  script when unnecessary).
  *  - HTML: Image 'src' only
  *  - CSS: background-image only
  *  - Scope: 1 fallback type per HTML document
  *
- * Limitations are per design to keep the script small. Considering most devices support SVG nowadays
- * this is just a safe, lean and simple fallback for legacy browsers.
+ * Limitations:
+ *
+ * - SVG using <object>, <iframe>, <embed>
  *
  * Usage:
  *
  * Simply load this script in your HTML code and make sure that the fallback extension is the one
  * you prefer on the last line of the script (this is the parameter of the single
  * function of this script).
- *
  */
 window.svgFallback = {
 
