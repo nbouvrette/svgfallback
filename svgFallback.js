@@ -108,7 +108,7 @@ window.svgFallback = {
      */
     fallbackBackgroundImageStyle: function (element, fallbackExtension) {
         fallbackExtension = typeof fallbackExtension !== 'undefined' ? fallbackExtension : this.fallbackExtension;
-        var backgroundImageStyle = this.hasSvgBackgroundImageStyle(element);
+        var backgroundImageStyle = this.getImageBackgroundStyle(element);
         if (backgroundImageStyle) {
             element.style.backgroundImage = backgroundImageStyle.replace(this.backgroundImageRegExp,
                 'url($1$2.' + fallbackExtension + '$4$5)');
