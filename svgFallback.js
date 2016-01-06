@@ -46,18 +46,6 @@ window.svgFallback = {
     },
 
     /**
-     * Has the element a background image of type SVG?
-     *
-     * @param {HTMLElement} element - The HTML element.
-     *
-     * @returns {Boolean} True when the element is an image of type SVG, otherwise false.
-     */
-    hasSvgBackgroundImageStyle: function (element) {
-        var backgroundImageStyle = this.getImageBackgroundStyle(element);
-        return !!(backgroundImageStyle && backgroundImageStyle.match(this.backgroundImageRegExp));
-    },
-
-    /**
      * Get an image background style.
      *
      * @param {HTMLElement} element - The HTML element.
@@ -73,15 +61,6 @@ window.svgFallback = {
             return false;
         }
         return backgroundImageStyle;
-    },
-
-    /**
-     * Are the requirements met to use this script?
-     *
-     * @param {Object} element - The HTML element.
-     */
-    meetsRequirement: function (element) {
-        return (!this.svgIsSupported && (this.isSvgImg(element) || this.hasSvgBackgroundImageStyle(element)));
     },
 
     /**
@@ -147,12 +126,14 @@ window.svgFallback = {
 
 // Run this while document loads to speed up fallback process and avoid IE8 emulator mode blocking.
 if (!svgFallback.svgIsSupported) {
-    (function() {
+    (function () {
+        var delay = 1;
         var interval = setInterval(function () {
             if (document.readyState == 'complete') {
                 clearInterval(interval);
             }
             svgFallback.fallbackAllSvg();
-        }, 1);
+            delay = delay * 2;
+        }, delay);
     })();
 }
