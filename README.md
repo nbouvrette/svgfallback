@@ -9,9 +9,9 @@ _This script is stand alone and does not required any external library._
 
 ### Size
 
-- Full version: 6.39kb (with all comments)
-- Minified: 1.63kb (feel free to minify it yourself with tools such as http://jscompress.com/)
-- Minified & Compressed: 0.68kb
+- Full version: 5.63kb (with all comments)
+- Minified: 1.41kb (feel free to minify it yourself with tools such as http://jscompress.com/)
+- Minified & Compressed: 0.64kb
 
 ### Supports
  - Browsers: IE6+, IE Edge (in IE8 emulation), Android Browser 2+ and any other browsers (which will bypass the script when unnecessary).
