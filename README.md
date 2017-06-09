@@ -29,11 +29,15 @@ Example
 
 1) Make sure the fallback extension is the one you want by checking the `fallbackExtension` variable (it can also be overwritten if need be):
 
-	fallbackExtension: 'png';
+```javascript
+fallbackExtension: 'png';
+```
 
 2) Add the script on your page:
 
-	<script src="svgFallback.js"></script>
+```html
+<script src="svgFallback.js"></script>
+```
 
 3) You're done - all you need to make sure is that each image, has the fallback version in the same path. For example, if you have /images/test.svg (using the default .png extension), you need to have /images/test.png available.
 
