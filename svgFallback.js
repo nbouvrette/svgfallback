@@ -38,7 +38,7 @@ window.svgFallback = {
      * @returns {Boolean} True when the element is an image of type SVG, otherwise false.
      */
     isSvgImg: function (element) {
-        return !!(element.nodeName.toLowerCase() === 'img' && element.src.match(this.imgSrcRegExp));
+        return this.imgSrcRegExp.test(element.src);
     },
 
     /**
@@ -62,10 +62,10 @@ window.svgFallback = {
     fallbackStyleSheets: function (fallbackExtension) {
         fallbackExtension = typeof fallbackExtension !== 'undefined' ? fallbackExtension : this.fallbackExtension;
         var styleSheets = document.styleSheets;
-        for (var styleSheetId in styleSheets) {
-            if (Object.prototype.hasOwnProperty.call(styleSheets, styleSheetId)) {
-                var styleSheet = styleSheets[styleSheetId];
-                styleSheet.cssText = (styleSheet.cssText + '').replace(this.stylesheetRegExp, '$1.' + fallbackExtension + '$3');
+        for (var iterator = 0; iterator < styleSheets.length; iterator++) {
+            var styleSheet = styleSheets[iterator];
+            if (this.stylesheetRegExp.test(styleSheet.cssText)) {
+                styleSheet.cssText = styleSheet.cssText.replace(this.stylesheetRegExp, '$1.' + fallbackExtension + '$3');
             }
         }
     },
@@ -77,24 +77,40 @@ window.svgFallback = {
      */
     fallbackAllImgSrc: function (fallbackExtension) {
         fallbackExtension = typeof fallbackExtension !== 'undefined' ? fallbackExtension : this.fallbackExtension;
-        var elements = document.getElementsByTagName('*');
+        var elements = document.querySelectorAll('img[src]');
         for (var iterator = 0; iterator < elements.length; iterator++) {
             var element = elements[iterator];
             this.fallbackImgSrc(element, fallbackExtension);
         }
+    },
+
+    /**
+     * Fallback all elements supported by this script.
+     *
+     * @param {String} [fallbackExtension=this.fallbackExtension] - the extension of the fall back image files.
+     */
+    fallback: function (fallbackExtension) {
+        fallbackExtension = typeof fallbackExtension !== 'undefined' ? fallbackExtension : this.fallbackExtension;
+        svgFallback.fallbackAllImgSrc(fallbackExtension);
+        svgFallback.fallbackStyleSheets(fallbackExtension);
     }
 };
 
-// Run this while document loads to speed up fallback process and avoid IE8 emulator mode blocking.
+// Run this while document loads to speed up fallback process and avoid IE8 emulation mode blocking.
 if (!svgFallback.svgIsSupported) {
     (function () {
         var delay = 1;
         var interval = setInterval(function () {
+            svgFallback.fallback();
+
             if (document.readyState === 'complete') {
                 clearInterval(interval);
-                svgFallback.fallbackStyleSheets();
+                // Final run after document is loaded to prevent glitched in IE8 emulation mode.
+                setTimeout(function () {
+                    svgFallback.fallback();
+                }, 1000);
             }
-            svgFallback.fallbackAllImgSrc();
+
             delay = delay * 2;
         }, delay);
     })();
