@@ -14,10 +14,9 @@ _This script is stand alone and does not required any external library._
 - Minified & Compressed: 0.64kb
 
 ### Supports
- - Browsers: IE6+, IE Edge (in IE8 emulation), Android Browser 2+ and any other browsers (which will bypass the script when unnecessary).
+ - Browsers: IE6+, Android Browser 2+ and any other browsers which will bypass the script when unnecessary.
  - HTML: Image 'src' only
- - CSS: background-image only
- - Scope: 1 fallback type per HTML document
+ - CSS: Everything that uses '.svg' in selector rules.
 
 Limitations are per design to keep the script small. Considering most devices support SVG nowadays this is just a safe, lean and simple fallback for legacy browsers.
 
@@ -41,4 +40,4 @@ fallbackExtension: 'png';
 
 3) You're done - all you need to make sure is that each image, has the fallback version in the same path. For example, if you have /images/test.svg (using the default .png extension), you need to have /images/test.png available.
 
-For best results, make sure the fallback image size is the same as the one selected for the .svg
+For best results, make sure the fallback image size is the same as the one selected for the .svg.
