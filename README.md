@@ -9,14 +9,14 @@ _This script is stand alone and does not required any external library._
 
 ### Size
 
-- Full version: 5.63kb (with all comments)
-- Minified: 1.41kb (feel free to minify it yourself with tools such as http://jscompress.com/)
-- Minified & Compressed: 0.64kb
+- Full version: 6.31kb (with all comments)
+- Minified: 1.65kb (feel free to minify it yourself with tools such as http://jscompress.com/)
+- Minified & Compressed: 0.79kb
 
 ### Supports
  - Browsers: IE6+, Android Browser 2+ and any other browsers which will bypass the script when unnecessary.
  - HTML: Image 'src' only
- - CSS: Everything that uses '.svg' in selector rules.
+ - CSS: `background` and `backgroundImage` style properties.
 
 Limitations are per design to keep the script small. Considering most devices support SVG nowadays this is just a safe, lean and simple fallback for legacy browsers.
 
