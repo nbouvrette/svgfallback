@@ -1,5 +1,5 @@
 /**
- * svgfallback.js 1.5
+ * svgfallback.js 1.6
  *
  * Copyright 2017, Nicolas Bouvrette http://ca.linkedin.com/in/nicolasbouvrette/
  * Released under the WTFPL license - http://www.wtfpl.net/
@@ -66,15 +66,26 @@ window.svgFallback = {
         fallbackExtension = typeof fallbackExtension !== 'undefined' ? fallbackExtension : this.fallbackExtension;
         var styleSheets = document.styleSheets;
         for (var styleSheetId = 0; styleSheetId < styleSheets.length; styleSheetId++) {
-
             var styleSheet = styleSheets[styleSheetId];
             var rules = (styleSheet.cssRules) ? styleSheet.cssRules : styleSheet.rules;
 
             for (var ruleId = 0; ruleId < rules.length; ruleId++) {
                 if (typeof rules[ruleId] !== 'undefined' && typeof rules[ruleId].style !== 'undefined') {
-                    var rule = rules[ruleId];
-                    this.fallbackStyleUrl(rule.style, 'background', fallbackExtension);
-                    this.fallbackStyleUrl(rule.style, 'backgroundImage', fallbackExtension);
+                    var style = rules[ruleId].style;
+                    
+                    if (style.background || style.backgroundImage) {
+                        if (style.cssText) {
+                            this.fallbackStyleUrl(style, 'cssText', fallbackExtension);
+                        } else {
+                            if (style.background) {
+                                this.fallbackStyleUrl(style, 'background', fallbackExtension);
+                            }
+
+                            if (style.backgroundImage) {
+                                this.fallbackStyleUrl(style, 'backgroundImage', fallbackExtension);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -89,8 +100,7 @@ window.svgFallback = {
      */
     fallbackStyleUrl: function (style, property, fallbackExtension) {
         fallbackExtension = typeof fallbackExtension !== 'undefined' ? fallbackExtension : this.fallbackExtension;
-        if (typeof style[property] === 'string' && style[property].length &&
-            this.styleUrlRegExp.test(style[property])) {
+        if (typeof style[property] === 'string' && style[property].length && this.styleUrlRegExp.test(style[property])) {
             style[property] = style[property].replace(this.styleUrlRegExp, '$1$2.' + fallbackExtension + '$3');
         }
     },
@@ -116,8 +126,8 @@ window.svgFallback = {
      */
     fallback: function (fallbackExtension) {
         fallbackExtension = typeof fallbackExtension !== 'undefined' ? fallbackExtension : this.fallbackExtension;
-        svgFallback.fallbackAllImgSrc(fallbackExtension);
-        svgFallback.fallbackStyleSheets(fallbackExtension);
+        this.fallbackAllImgSrc(fallbackExtension);
+        this.fallbackStyleSheets(fallbackExtension);
     }
 };
 
@@ -126,13 +136,13 @@ if (!svgFallback.svgIsSupported) {
     (function () {
         var delay = 1;
         var interval = setInterval(function () {
-            svgFallback.fallback();
+            svgFallback.fallbackAllImgSrc();
 
             if (document.readyState === 'complete') {
                 clearInterval(interval);
                 // Final run after document is loaded to prevent glitched in IE8 emulation mode.
                 setTimeout(function () {
-                    svgFallback.fallback();
+                    svgFallback.fallbackStyleSheets();
                 }, 1000);
             }
 
