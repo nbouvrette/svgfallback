@@ -1,5 +1,5 @@
 /**
- * svgfallback.js 1.6
+ * svgfallback.js 1.61
  *
  * Copyright 2017, Nicolas Bouvrette http://ca.linkedin.com/in/nicolasbouvrette/
  * Released under the WTFPL license - http://www.wtfpl.net/
@@ -136,13 +136,13 @@ if (!svgFallback.svgIsSupported) {
     (function () {
         var delay = 1;
         var interval = setInterval(function () {
-            svgFallback.fallbackAllImgSrc();
+            svgFallback.fallback();
 
             if (document.readyState === 'complete') {
                 clearInterval(interval);
                 // Final run after document is loaded to prevent glitched in IE8 emulation mode.
                 setTimeout(function () {
-                    svgFallback.fallbackStyleSheets();
+                    svgFallback.fallback();
                 }, 1000);
             }
 
